@@ -286,7 +286,65 @@ class nagios::params  {
         default => $nagios_monitor_plugin,
     }
 
+## DEFAULTS FOR BACKUP CLASS
+# These are settings that influence the (optional) nagios::backup class
+# You can define these variables or leave the defaults
 
+    # How the backup server refers to the backup target 
+    $backup_target_real = $nagios_backup_target ? {
+        ''      => $backup_target ? {
+           ''      => "${fqdn}",
+           default => $backup_target,
+        },
+        default => "$nagios_backup_target",
+    }
+  
+    # Frequency of backups
+    $backup_frequency = $nagios_backup_frequency ? {
+        ''      => "daily",
+        default => "$nagios_backup_frequency",
+    }
+
+    # If nagios data have to be backed up
+    $backup_data_enable = $nagios_backup_data ? {
+        ''      => $backup_data ? {
+           ''      => true,
+           default => $backup_data,
+        },
+        default => $nagios_backup_data,
+    }
+
+    # If nagios logs have to be backed up
+    $backup_log_enable = $nagios_backup_log ? {
+        ''      => $backup_log ? {
+           ''      => false,
+           default => $backup_log,
+        },
+        default => $nagios_backup_log,
+    }
+
+
+## DEFAULTS FOR FIREWALL CLASS
+# These are settings that influence the (optional) nagios::firewall class
+# You can define these variables or leave the defaults
+
+    # Source IPs that can access this service - Use iptables friendly format
+    $firewall_source_real = $nagios_firewall_source ? {
+        ''      => $firewall_source ? {
+           ''      => "0.0.0.0/0",
+           default => $firewall_source,
+        },
+        default => "$nagios_firewall_source",
+    }
+
+    # Destination IP to use for this host (Default facter's $ipaddress)
+    $firewall_destination_real = $nagios_firewall_destination ? {
+        ''      => $firewall_destination ? {
+           ''      => "${ipaddress}",
+           default => $firewall_destination,
+        },
+        default => "$nagios_firewall_destination",
+    }
 
 ## FILE SERVING SOURCE
 # Sets the correct source for static files

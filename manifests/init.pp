@@ -48,7 +48,9 @@ class nagios {
     # Include extra configs for Example42 Nagios implementation
     include nagios::extra
 
-    
+    # Include cleanup class that can be used to clean and purge storeconfigured mess
+    include nagios::cleanup
+
     # Manage permissions on external command file, is used (needed for CGI commands)
     if "${nagios::params::check_external_commands}" == "yes" {
 
@@ -95,6 +97,21 @@ class nagios {
 
     # Include extended classes, if relevant variables are set
     if $link == "yes" { include nagios::link }
-      if $monitor == "yes" { include nagios::monitor }
+    if $backup == "yes" { include nagios::backup }
+    if $monitor == "yes" { include nagios::monitor }
+    if $firewall == "yes" { include nagios::firewall }
+
+    # Include project specific class if $my_project is set
+    # The extra project class is by default looked in nagios module 
+    # If $my_project_onmodule == yes it's looked in your project module
+    if $my_project { 
+        case $my_project_onmodule {
+            yes,true: { include "${my_project}::nagios" }
+            default: { include "nagios::${my_project}" }
+        }
+    }
+
+    # Include debug class is debugging is enabled ($debug=yes)
+    if ( $debug == "yes" ) or ( $debug == true ) { include nagios::debug }
 
 }
