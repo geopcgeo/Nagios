@@ -1,17 +1,5 @@
 Puppet module: nagios
 
-# Written by Lab42 #
-# http://www.Example42.com
-
-Licence: Apache2
-
-DESCRIPTION:
-This module installs, configures and manages nagios.
-It requires storeconfigs to automatically manage hosts and services checks.
-It's based on ideas and code found in different public modules available online.
-Particular credits di David Schmitt's nagios module.
-Standard and extended classes are available.
-
 In order to have functionality and keep cross-os compliance (at least on Debian/Ubuntu/RedHat)
 without getting lost in the different configuration layout of the Nagios packages in these distros, 
 the design choice has been to define in the same module all the configurations needed, overriding the

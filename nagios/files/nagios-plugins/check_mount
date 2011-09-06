@@ -1,11 +1,5 @@
 #!/usr/bin/perl -w
 # File managed by Puppet
-###################################
-#
-#     written by Martin Scharm
-#      see https://binfalse.de
-#
-###################################
 
 use warnings;
 use strict;

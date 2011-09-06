@@ -1,6 +1,6 @@
 # Class: nagios::monitor
 #
-# Monitors nagios process/ports/service using Example42 monitor meta module (to be adapted to custom monitor solutions)
+# Monitors nagios process/ports/service using monitor meta module (to be adapted to custom monitor solutions)
 # It's automatically included ad used if $monitor=yes and is defined at least one monitoring software in $monitor_tool
 # This class permits to abstract what you want to monitor from the actual tool and modules you'll use for monitoring
 # and can be used to quickly deploy a new monitoring solution

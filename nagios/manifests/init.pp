@@ -97,7 +97,6 @@ class nagios {
 
     # Include extended classes, if relevant variables are set
     if $link == "yes" { include nagios::link }
-    if $backup == "yes" { include nagios::backup }
     if $monitor == "yes" { include nagios::monitor }
     if $firewall == "yes" { include nagios::firewall }
 
@@ -110,8 +109,5 @@ class nagios {
             default: { include "nagios::${my_project}" }
         }
     }
-
-    # Include debug class is debugging is enabled ($debug=yes)
-    if ( $debug == "yes" ) or ( $debug == true ) { include nagios::debug }
 
 }
