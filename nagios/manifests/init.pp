@@ -42,57 +42,7 @@ class nagios {
         ensure  => present,
         require => Package["nagios"],
         notify  => Service["nagios"],
-        content => template("nagios/nagios.cfg.erb"),
     }
 
-    # Include extra configs for Example42 Nagios implementation
-    include nagios::extra
-
-    # Include cleanup class that can be used to clean and purge storeconfigured mess
-    include nagios::cleanup
-
-    # Manage permissions on external command file, is used (needed for CGI commands)
-    if "${nagios::params::check_external_commands}" == "yes" {
-
-        file { "nagios.cmd_dir":
-            path    => "${nagios::params::commanddir}",
-            mode    => "750",
-            owner   => "${nagios::params::username}",
-            group   => "${apache::params::username}",
-            ensure  => present,
-            require => Package["nagios"],
-        }
-
-        file { "nagios.cmd":
-            path    => "${nagios::params::commandfile}",
-            mode    => "660",
-            owner   => "${nagios::params::username}",
-            group   => "${apache::params::username}",
-            ensure  => present,
-            require => Package["nagios"],
-            notify  => Service["nagios"],
-        }
-    }
-
-
-    # Include OS specific subclasses, if necessary
-    case $operatingsystem {
-        default: { }
-    }
-
-    # Include extended classes, if relevant variables are set
-    if $link == "yes" { include nagios::link }
-    if $monitor == "yes" { include nagios::monitor }
-    if $firewall == "yes" { include nagios::firewall }
-
-    # Include project specific class if $my_project is set
-    # The extra project class is by default looked in nagios module 
-    # If $my_project_onmodule == yes it's looked in your project module
-    if $my_project { 
-        case $my_project_onmodule {
-            yes,true: { include "${my_project}::nagios" }
-            default: { include "nagios::${my_project}" }
-        }
-    }
-
+   
 }
