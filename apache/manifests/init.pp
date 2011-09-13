@@ -1,7 +1,7 @@
 # Class: apache
 #
 # Manages apache.
-# Include it to install and run apache2 with default settings
+# Include it to install and run apache with default settings
 #
 # Usage:
 # include apache

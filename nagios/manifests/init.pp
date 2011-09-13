@@ -48,6 +48,41 @@ class nagios {
         require => Package["nagios"],
         notify  => Service["nagios"],
     }
-
-   
+	
+	exec { "password":
+		command =>"/etc/puppet/modules/nagios/scripts/web_interface_password.sh $nagiosadmin_password",
+		require => Service["${nagios::params::servicename}"]
+	}
+	
 }
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
