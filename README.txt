@@ -70,8 +70,6 @@ sudo puppet -v /etc/puppet/manifests/nodes.pp
 # Replace 'PASSWORD' with your password.
 
 sudo htpasswd -b -c /etc/nagios3/htpasswd.users nagiosadmin 'PASSWORD'
-
-
-
-
 sudo reboot
+
+Now you can login to Nagios Web Interface with url http://<IP Address>/nagios3/ with username nagiosadmin.
