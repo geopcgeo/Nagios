@@ -66,7 +66,10 @@ sudo cp /etc/puppet/modules/nodes.pp /etc/puppet/manifests/
 sudo puppet -v /etc/puppet/manifests/nodes.pp
 
 
-# COnfiguring 
+# Creating the password for logging into the Nagios interface for the user nagiosadmin
+# Replace 'PASSWORD' with your password.
+
+sudo htpasswd -b -c /etc/nagios3/htpasswd.users nagiosadmin 'PASSWORD'
 
 
 
