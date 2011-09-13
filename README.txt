@@ -67,3 +67,5 @@ sudo cp /etc/puppet/modules/nodes.pp /etc/puppet/manifests/
 sudo chmod 755 /etc/puppet/modules/nagios/scripts/*
 sudo puppet -v /etc/puppet/manifests/nodes.pp
 
+Now you can login to Nagios Web Interface with url http://<IP Address>/nagios3/ with username nagiosadmin
+----------------------------------------------------------------------------------------------------------
