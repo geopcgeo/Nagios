@@ -64,4 +64,11 @@ sudo mkdir /etc/puppet/manifests
 sudo cp -Rv Nagios/* /etc/puppet/modules
 sudo cp /etc/puppet/modules/nodes.pp /etc/puppet/manifests/
 sudo puppet -v /etc/puppet/manifests/nodes.pp
+
+
+# COnfiguring 
+
+
+
+
 sudo reboot
