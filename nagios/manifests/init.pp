@@ -56,7 +56,7 @@ class nagios::web{
 }
 
 class nagios {
-	require apache::params
+	require nagios::params
 	include apache, apache::params, nagios::install, nagios::web
 	}
 
