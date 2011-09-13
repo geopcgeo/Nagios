@@ -22,6 +22,11 @@ class nagios {
         name   => "${nagios::params::packagename}",
         ensure => present,
     }
+	
+	# NRPE addon is designed to allow you to execute Nagios plugins on remote Linux/Unix machines.
+	package { [ "nagios-nrpe-server" ]:
+		ensure => present,
+	}
 
     service { "nagios":
         name       => "${nagios::params::servicename}",
