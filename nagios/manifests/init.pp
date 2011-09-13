@@ -1,21 +1,5 @@
-#
-# Class: nagios
-#
-# Manages nagios.
-# Include it to install and run nagios
-# It defines package, service, main configuration file.
-#
-# Usage:
-# include nagios
-#
-class nagios {
 
-    # Load the variables used in this module. Check the params.pp file 
-    require nagios::params
-    include apache::params
-
-    # No Nagios without webserver
-    include apache
+class nagios::install {
 
     # Basic Package - Service - Configuration file management
     package { "nagios":
@@ -48,13 +32,34 @@ class nagios {
         require => Package["nagios"],
         notify  => Service["nagios"],
     }
-	
-	exec { "password":
-		command =>"/etc/puppet/modules/nagios/scripts/web_interface_password.sh $nagiosadmin_password",
-		require => Service["${nagios::params::servicename}"]
-	}
-	
+		
 }
+
+class nagios::web{
+			case $operatingsystem
+                {	   debian:  {       exec { "password":
+							command =>"/etc/puppet/modules/nagios/scripts/ubuntu_web_interface_password.sh $nagiosadmin_password",
+							require => Service["${nagios::params::servicename}"]
+											}
+								}
+						ubuntu:	{       exec { "password":
+							command =>"/etc/puppet/modules/nagios/scripts/web_interface_password.sh $nagiosadmin_password",
+							require => Service["${nagios::params::servicename}"]
+											}
+								}
+						centos: {       exec { "password":
+							command =>"/etc/puppet/modules/nagios/scripts/centos_web_interface_password.sh $nagiosadmin_password",
+							require => Service["${nagios::params::servicename}"]
+											}
+								}
+				}
+}
+
+class nagios {
+	require apache::params
+	include apache, apache::params, nagios::install, nagios::web
+	}
+
 
 
 

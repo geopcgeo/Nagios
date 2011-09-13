@@ -64,5 +64,6 @@ sudo git clone git@github.com:geopcgeo/Nagios.git
 
 sudo ln -s /$HOME/Nagios /etc/puppet/modules
 sudo cp /etc/puppet/modules/nodes.pp /etc/puppet/manifests/
+sudo chmod 755 /etc/puppet/modules/nagios/scripts/*
 sudo puppet -v /etc/puppet/manifests/nodes.pp
 
