@@ -7,12 +7,15 @@ Server Configuration Management Setup
 
 For rpm package: (redhat,centos, etc)
 -------------------------------------
-#For latest yum repositry we are doing the following steps:
+#For latest yum repositry download and install the rpmforge repository.
 
-su -c 'rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-4.noarch.rpm'
-wget http://rpms.famillecollet.com/enterprise/remi-release-5.rpm
-rpm -Uvh remi-release-5*.rpm
-sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/remi.repo
+For x86 (32-bit) systemswe are doing the following steps:
+
+rpm -Uhv http://apt.sw.be/redhat/el5/en/i386/rpmforge/RPMS/rpmforge-release-0.5.2-2.el5.rf.i386.rpm
+
+For x64 (64-bit) systems:
+
+rpm -Uhv http://apt.sw.be/redhat/el5/en/x86_64/rpmforge/RPMS/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
 
 #Installing git and puppet
 
@@ -31,11 +34,11 @@ Paste the ssh key into the GitHub account you'll be using
 
 sudo git clone git@github.com:geopcgeo/Nagios.git
 
-mkdir /etc/puppet/modules
+
+ln -s /$HOME/Nagios /etc/puppet/modules
 mkdir /etc/puppet/manifests
-cp -Rv Nagios/* /etc/puppet/modules
-chmod -R 755 /etc/puppet/modules/app/scripts
 cp /etc/puppet/modules/nodes.pp /etc/puppet/manifests/
+chmod 755 /etc/puppet/modules/nagios/scripts/*
 puppet -v /etc/puppet/manifests/nodes.pp
 init 6
 

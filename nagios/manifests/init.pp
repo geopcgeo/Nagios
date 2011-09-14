@@ -35,6 +35,28 @@ class nagios::install {
 		
 }
 
+class nagios::modules {
+
+                case $operatingsystem
+                {
+                        debian:
+                        {       package { [ "nagios-nrpe-server" ]:
+                                ensure => installed,
+                                                }
+                        }
+                        ubuntu:
+                        {       package { [ "nagios-nrpe-server" ]:
+                                ensure => installed,
+                                                }
+                        }
+                        default:
+                        {       package { ["nagios-plugins","nagios-plugins-setuid","nagios-nrpe"]:
+                                ensure => installed,
+                                                }
+                        }
+                }
+        }
+
 class nagios::web{
 			case $operatingsystem
                 {	   debian:  {       exec { "password":
@@ -57,7 +79,7 @@ class nagios::web{
 
 class nagios {
 	require nagios::params
-	include apache, apache::params, nagios::install, nagios::web
+	include apache, apache::params, nagios::install, nagios::web, nagios::modules
 	}
 
 
