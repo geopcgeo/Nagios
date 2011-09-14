@@ -37,16 +37,19 @@ class nagios::modules {
                         debian:
                         {       package { [ "nagios-nrpe-server" ]:
                                 ensure => installed,
+				require    => Package["nagios"],
                                                 }
                         }
                         ubuntu:
                         {       package { [ "nagios-nrpe-server" ]:
                                 ensure => installed,
+				require    => Package["nagios"],
                                                 }
                         }
                         default:
                         {       package { ["nagios-plugins","nagios-plugins-setuid","nagios-nrpe"]:
                                 ensure => installed,
+				require    => Package["nagios"],
                                                 }
                         }
                 }
