@@ -1,4 +1,4 @@
-
+# This will install nagios and needed modules.
 class nagios::install {
 
     # Basic Package - Service - Configuration file management
