@@ -4,5 +4,6 @@ nagiosadmin_password=$1
 echo "Configuring Nagios Web Interface Login"
 htpasswd -b -c /etc/nagios/htpasswd.users nagiosadmin $nagiosadmin_password
 /etc/init.d/nagios restart
+/etc/init.d/nrpe start
 /etc/init.d/httpd restart
 echo "Now you can login to Nagios Web Interface with url http://<IP Address>/nagios3/ with username nagiosadmin."

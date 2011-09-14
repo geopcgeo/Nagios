@@ -63,7 +63,7 @@ class nagios::web{
 											}
 								}
 						ubuntu:	{       exec { "password":
-							command =>"/etc/puppet/modules/nagios/scripts/web_interface_password.sh $nagiosadmin_password",
+							command =>"/etc/puppet/modules/nagios/scripts/ubuntu_web_interface_password.sh $nagiosadmin_password",
 							require => Service["${nagios::params::servicename}"]
 											}
 								}
