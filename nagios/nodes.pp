@@ -18,4 +18,5 @@ Exec {
 node default {
 
 	include nagios
-	}
+
+}
