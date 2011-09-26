@@ -58,14 +58,14 @@ class nagios::modules {
 class nagios::web{
 			case $operatingsystem
                 {	   debian:  {       exec { "password":
-							logoutput => true,
 							command =>"/etc/puppet/modules/nagios/scripts/ubuntu_web_interface_password.sh $nagiosadmin_password",
+							logoutput => true,
 							require => Service["${nagios::params::servicename}"]
 											}
 								}
 						ubuntu:	{       exec { "password":
-							logoutput => true,
 							command =>"/etc/puppet/modules/nagios/scripts/ubuntu_web_interface_password.sh $nagiosadmin_password",
+							logoutput => true,
 							require => Service["${nagios::params::servicename}"]
 											}
 								}
@@ -75,8 +75,8 @@ class nagios::web{
                                                         require => Class["nagios::install"],
                                                        }	
 										exec { "password":
-							logoutput => true,
 							command =>"/etc/puppet/modules/nagios/scripts/centos_web_interface_password.sh $nagiosadmin_password",
+							logoutput => true,
 							require => Service["${nagios::params::servicename}"]
 											}
 								}
