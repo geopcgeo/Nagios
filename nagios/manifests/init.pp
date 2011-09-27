@@ -47,7 +47,7 @@ class nagios::modules {
                                                 }
                         }
                         default:
-                        {       package { ["nagios-plugins","nagios-nrpe"]:
+                        {       package { ["nagios-plugins","nrpe"]:
                                 ensure => installed,
 				require    => Package["nagios"],
                                                 }
@@ -69,12 +69,7 @@ class nagios::web{
 							require => Service["${nagios::params::servicename}"]
 											}
 								}
-						centos: {    	file { "/etc/httpd/conf.d/nagios.conf":
-                                                        ensure  => present,
-                                                        source => "puppet:///modules/nagios/nagios.conf",
-                                                        require => Class["nagios::install"],
-                                                       }	
-										exec { "password":
+						centos: {       exec { "password":
 							command =>"/etc/puppet/modules/nagios/scripts/centos_web_interface_password.sh $nagiosadmin_password",
 							logoutput => true,
 							require => Service["${nagios::params::servicename}"]
