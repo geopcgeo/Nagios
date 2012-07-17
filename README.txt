@@ -21,7 +21,7 @@ rpm -Uhv http://apt.sw.be/redhat/el5/en/x86_64/rpmforge/RPMS/rpmforge-release-0.
 
 yum install git-core puppet
 
-#Configuring ssh public key.
+#Configuring ssh public key.Edited by Roni
 
 cd $HOME
 ssh-keygen -t rsa 
