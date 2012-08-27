@@ -1,4 +1,4 @@
-#!/bin/sh
+############!/bin/sh
 #This will create password for the user nagiosadmin.
 nagiosadmin_password=$1
 echo "Configuring Nagios Web Interface Login"
